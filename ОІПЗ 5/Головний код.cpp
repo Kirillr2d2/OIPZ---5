@@ -34,31 +34,29 @@ void Value(int& n, double& x, double& b, double& h, double& YesOrNo) //нова функ
 	cout << "n повинно бути >= 3: ";
 	cin >> n;
 	dataNChecking(n);
-	cout << "b повинно бути >= a: ";
+	cout << "a: ";
 	double a;
 	cin >> a;
 	x = a;
-	cout << "b >= a: ";
+	cout << "b повинно бути >= a: ";
 	cin >> b;
 	dataBChecking(b, x);
 	cout << "h повинно бути більше 0: ";
 	cin >> h;
 	dataHChecking(h);
 }
-double calculator(int n, double x) ///нова функція для знаходження значень
+double calculator(int n, double x) ///нова функція для знаходження значень, також зменшив кількість викликів змінної HelpValue
 {
+	double HelpValue = 0;
 	if (x <= 0) // 1 сума
 	{
-		double HelpValue = 0;
 		for (int i = 2; i <= n - 1; i++)
 		{
 			HelpValue += x / i;
 		}
-		return HelpValue;
 	}
 	else // 2 суми
 	{
-		double HelpValue = 0;
 		for (int i = 0; i <= n - 1; i++)
 		{
 			for (int j = 0; j <= i; j++)
@@ -66,9 +64,8 @@ double calculator(int n, double x) ///нова функція для знаходження значень
 				HelpValue += i / (j + x);
 			}
 		}
-
-		return HelpValue;
 	}
+	return HelpValue; //перемістив повернення значення в кінець функції
 }
 int main()
 {
